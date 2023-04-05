@@ -2,18 +2,16 @@ pipeline {
   agent {
     docker { image 'liquibase/liquibase:4.4.2' }
   }
-  environment {
-    MARIADB_CREDS=credentials('mariadb-credentials')
-  }
+  
   stages {
     stage('Status') {
       steps {
-        sh 'liquibase status --url="jdbc:mysql://192.168.32.11:3306/my_app" --changeLogFile=my_app-wrapper.xml --username=$MARIADB_CREDS_USR --password=$MARIADB_CREDS_PSW'
+        sh 'liquibase status --url="jdbc:redshift://default.404842131902.us-east-1.redshift-serverless.amazonaws.com:5439/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
       }
     }
     stage('Update') {
       steps {
-        sh 'liquibase update --url="jdbc:mysql://192.168.32.11:3306/my_app" --changeLogFile=my_app-wrapper.xml --username=$MARIADB_CREDS_USR --password=$MARIADB_CREDS_PSW'
+        sh 'liquibase update --url="jdbc:redshift://default.404842131902.us-east-1.redshift-serverless.amazonaws.com:5439/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
       }
     }
   }
