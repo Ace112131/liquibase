@@ -14,6 +14,13 @@ pipeline {
         sh 'liquibase update --url="jdbc:mysql://database-1.cluster-ro-cwvqn127eelm.us-east-1.rds.amazonaws.com:3306/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
       }
     }
+    stage('Update') {
+      steps {
+        sh 'liquibase update --url="jdbc:mysql://database-11.cwvqn127eelm.us-east-1.rds.amazonaws.com:3306/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
+      }
+    }
+    
   }
+ 
   
 }
