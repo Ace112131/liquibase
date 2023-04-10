@@ -6,12 +6,12 @@ pipeline {
   stages {
     stage('Status') {
       steps {
-        sh 'liquibase status --url="jdbc:redshift://default.404842131902.us-east-1.redshift-serverless.amazonaws.com:5439/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
+        sh 'liquibase status --url="jdbc:mysql://database-1.cluster-ro-cwvqn127eelm.us-east-1.rds.amazonaws.com:3306/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
       }
     }
     stage('Update') {
       steps {
-        sh 'liquibase update --url="jdbc:redshift://default.404842131902.us-east-1.redshift-serverless.amazonaws.com:5439/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
+        sh 'liquibase update --url="jdbc:mysql://database-1.cluster-ro-cwvqn127eelm.us-east-1.rds.amazonaws.com:3306/dev" --changeLogFile=my_app-wrapper.xml --username=admin --password=Admin1121'
       }
     }
   }
